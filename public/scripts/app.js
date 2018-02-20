@@ -1,61 +1,42 @@
 'use strict';
 
-console.log('running');
+var visibility = false;
 
-// JSX = JavaScript XML
-var appObject = {
-    title: 'Budget App',
-    subtitle: 'This is budget app'
+var toggleVisibility = function toggleVisibility() {
+    visibility = !visibility;
+    render();
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        appObject.title
-    ),
-    React.createElement(
-        'p',
-        null,
-        appObject.subtitle
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item teo'
-        )
-    )
-);
+var toggleDetails = function toggleDetails() {
+    console.log('p');
+};
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Joshua Long'
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Age: 24'
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Location: Auckland, NZ'
-    )
-);
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+var render = function render() {
+    var template = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Visibility Toggle'
+        ),
+        React.createElement(
+            'button',
+            { onClick: toggleVisibility },
+            visibility ? 'Hide details' : 'Show details'
+        ),
+        visibility && React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'p',
+                null,
+                'This is details'
+            )
+        )
+    );
+    ReactDOM.render(template, appRoot);
+};
+render();
