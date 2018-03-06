@@ -1,4 +1,10 @@
 class IndecisionApp extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            options: ['Thing one', 'Thing two', 'Thing four']
+        };
+    }
     render() {
         const title = 'Indecision';
         const subtitle = 'Put your life in hands of a computer';
@@ -7,7 +13,7 @@ class IndecisionApp extends React.Component {
             <div>
                 <Header title={title} subtitle={subtitle}/>
                 <Action />
-                <Options options={options}/>
+                <Options options={this.state.options}/>
                 <AddOption />
             </div>
         )
@@ -40,8 +46,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
     handleRemoveAll() {
-        console.log('removed!')
+        // console.log('removed!')
+        console.log(this.props.options)
     }
     render() {
         return (
